@@ -1,0 +1,14 @@
+[Unit]
+Description=Log Telemetry and Start TX
+After=network.target
+
+[Service]
+ExecStart=/bin/bash -c 'nohup /home/pi/pylora/tx/log_telemetry.sh > /home/pi/pylora/tx/log_telemetry.out 2>&1 & /home/pi/pylora/tx/tx'
+WorkingDirectory=/home/pi/pylora/tx/
+StandardOutput=journal
+StandardError=journal
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
